@@ -7,8 +7,13 @@
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item to="/posts-manager">Posts Manager</b-nav-item>
-          <b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
-          <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
+        </b-navbar-nav>
+        <b-navbar-nav class="ml-auto">
+          <b-nav-item v-cloak href="#" @click.prevent="login" v-if="activeUser">Login</b-nav-item>
+          <b-nav-item-dropdown v-cloak text="Options" v-else right>
+            <b-dropdown-item href="#" @click.prevent="logout">Profile</b-dropdown-item>
+            <b-dropdown-item href="#" @click.prevent="logout">Logout</b-dropdown-item>
+          </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -18,8 +23,11 @@
   </div>
 </template>
 
-<script>
+<style lang="scss">
+@import 'src/assets/css/global.scss';
+</style>
 
+<script>
 export default {
   name: 'app',
   data () {

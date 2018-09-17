@@ -18,7 +18,6 @@ let router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
       component: Hello
     },
     {
