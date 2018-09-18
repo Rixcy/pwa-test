@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid mt-4">
-    <h1 class="h1">Posts Manager</h1>
+    <h1 class="h1">Posts</h1>
     <b-alert :show="loading" variant="info">Loading...</b-alert>
     <b-row>
       <b-col>
@@ -9,6 +9,7 @@
             <tr>
               <th>ID</th>
               <th>Title</th>
+              <th>Created At</th>
               <th>Updated At</th>
               <th>&nbsp;</th>
             </tr>
@@ -17,10 +18,15 @@
             <tr v-for="post in posts" :key="post.id">
               <td>{{ post.id }}</td>
               <td>{{ post.title }}</td>
-              <td>{{ post.updatedAt }}</td>
+              <td>{{ moment(post.createdAt).calendar() }}</td>
+              <td>{{ moment(post.updatedAt).calendar() }}</td>
               <td class="text-right">
-                <a href="#" @click.prevent="populatePostToEdit(post)">Edit</a> -
-                <a href="#" @click.prevent="deletePost(post.id)">Delete</a>
+                <a href="#" @click.prevent="populatePostToEdit(post)">
+                  <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
+                </a> -
+                <a href="#" @click.prevent="deletePost(post.id)">
+                  <font-awesome-icon icon="times"></font-awesome-icon>
+                </a>
               </td>
             </tr>
           </tbody>

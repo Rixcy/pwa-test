@@ -11,6 +11,9 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.4",
+    "@fortawesome/free-solid-svg-icons": "^5.3.1",
+    "@fortawesome/vue-fontawesome": "^0.1.1",
     "@okta/jwt-verifier": "^0.0.12",
     "@okta/okta-vue": "^1.0.3",
     "axios": "^0.18.0",
@@ -22,6 +25,7 @@
     "sequelize": "^4.38.1",
     "sqlite3": "^4.0.2",
     "vue": "^2.5.2",
+    "vue-moment": "^4.0.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

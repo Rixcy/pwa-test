@@ -2,7 +2,10 @@
   <div class="hero">
     <div class="container">
       <b-img thumbnail fluid :src="randomImage" class="mb-4 grayscale" width="300" height="200" />
-      <p class="lead">{{ randomQuote['quote'] }}</p>
+      <p class="lead">
+        <font-awesome-icon icon="quote-left" class="mr-2"></font-awesome-icon>
+        {{ randomQuote['quote'] }}
+      </p>
       <hr class="my-4">
       <p>{{ randomQuote['author'] }}</p>
     </div>
@@ -20,20 +23,17 @@ export default {
     }
   },
   async created () {
-    await this.getRandomImage()
     await this.getRandomQuote()
   },
   watch: {
-    '$route': 'getRandomImage(), getRandomQuote()'
+    '$route': 'getRandomQuote()'
   },
   methods: {
-    async getRandomImage () {
-      let idx = Math.floor(Math.random() * 100)
-      this.randomImage = `https://picsum.photos/300/200?image=${idx}`
-    },
     async getRandomQuote () {
       let idx = Math.floor(Math.random() * this.$options.json['quotes'].length)
       this.randomQuote = await this.$options.json['quotes'][idx]
+      this.randomImage =
+        `https://picsum.photos/300/200?image=${Math.floor(Math.random() * 100)}`
     }
   }
 }
@@ -52,7 +52,6 @@ export default {
   font-size: 1.5rem;
 }
 img.grayscale {
-  filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
   -webkit-transition: .5s ease-in-out;
      -moz-filter: grayscale(100%);
@@ -60,7 +59,6 @@ img.grayscale {
        -o-filter: grayscale(100%);
        -o-transition: .5s ease-in-out;
   &:hover {
-    filter: grayscale(0%);
     -webkit-filter: grayscale(0%);
     -webkit-transition: .5s ease-in-out;
        -moz-filter: grayscale(0%);
