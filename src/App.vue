@@ -9,16 +9,17 @@
           <b-nav-item to="/posts-manager">Posts Manager</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item v-cloak href="#" @click.prevent="login" v-if="activeUser">Login</b-nav-item>
-          <b-nav-item-dropdown v-cloak text="Options" v-else right>
+          <b-nav-item-dropdown v-if="activeUser" text="Options" right>
             <b-dropdown-item href="#" @click.prevent="logout">Profile</b-dropdown-item>
             <b-dropdown-item href="#" @click.prevent="logout">Logout</b-dropdown-item>
           </b-nav-item-dropdown>
+          <b-nav-item v-else-if="!activeUser && loadingUser === false" href="#" @click.prevent="login">
+            Login
+          </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
     <!-- routes will be rendered here -->
-    <div></div>
     <router-view />
   </div>
 </template>
@@ -32,7 +33,8 @@ export default {
   name: 'app',
   data () {
     return {
-      activeUser: null
+      activeUser: null,
+      loadingUser: false
     }
   },
   async created () {
@@ -47,7 +49,9 @@ export default {
       this.$auth.loginRedirect()
     },
     async refreshActiveUser () {
+      this.loadingUser = true
       this.activeUser = await this.$auth.getUser()
+      this.loadingUser = false
     },
     async logout () {
       await this.$auth.logout()
