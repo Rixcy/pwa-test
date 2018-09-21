@@ -1,7 +1,11 @@
 <template>
   <div class="hero">
-    <div class="container">
-      <b-img thumbnail fluid :src="randomImage" class="mb-4 grayscale" width="300" height="200" />
+    <div id="quoteContainer" class="container">
+      <b-img
+        thumbnail
+        fluid
+        :src="randomImage['url']"
+        class="mb-4 grayscale"></b-img>
       <p class="lead">
         <font-awesome-icon icon="quote-left" class="mr-2"></font-awesome-icon>
         {{ randomQuote['quote'] }}
@@ -13,27 +17,43 @@
 </template>
 
 <script>
+import axios from 'axios'
 import json from '../assets/quotes.json'
 export default {
   json: json,
   data () {
     return {
       randomQuote: {},
-      randomImage: ''
+      randomImage: {
+        url: ''
+      }
     }
   },
   async created () {
+    await this.getRandomImage()
     await this.getRandomQuote()
   },
   watch: {
-    '$route': 'getRandomQuote()'
+    '$route': 'getRandomQuote(), getRandomImage()'
   },
   methods: {
     async getRandomQuote () {
       let idx = Math.floor(Math.random() * this.$options.json['quotes'].length)
       this.randomQuote = await this.$options.json['quotes'][idx]
-      this.randomImage =
-        `https://picsum.photos/300/200?image=${Math.floor(Math.random() * 100)}`
+    },
+    async getRandomImage () {
+      let config = {
+        headers: {
+          'Authorization':
+          'Client-ID 36c2c21538ee87923f6c18bbfce395c3c073ff5bc38c7019c2a2c24986389231',
+          'Accept-Version': 'v1'
+        }
+      }
+      axios.get(
+        'https://api.unsplash.com/photos/random/?w=300&h=200', config
+      ).then(response => {
+        this.randomImage['url'] = response.data['urls']['custom']
+      })
     }
   }
 }
