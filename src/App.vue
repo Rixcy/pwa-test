@@ -5,8 +5,8 @@
       <b-navbar-brand to="/">Rixcy</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
-          <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/posts-manager">Posts</b-nav-item>
+          <b-nav-item to="/" exact>Home</b-nav-item>
+          <b-nav-item to="/posts">Posts</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown v-if="activeUser" text="Options" right>
