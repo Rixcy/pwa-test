@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Posts from '@/components/Posts'
+import Crypto from '@/components/Crypto'
 import Auth from '@okta/okta-vue'
 
 Vue.use(Auth, {
@@ -19,6 +20,10 @@ let router = new Router({
     {
       path: '/',
       component: Hello
+    },
+    {
+      path: '/crypto',
+      component: Crypto
     },
     {
       path: '/implicit/callback',

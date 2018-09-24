@@ -7,6 +7,7 @@
         <b-navbar-nav>
           <b-nav-item to="/" exact>Home</b-nav-item>
           <b-nav-item to="/posts">Posts</b-nav-item>
+          <b-nav-item to="/crypto">Crypto</b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item-dropdown v-if="activeUser" text="Options" right>

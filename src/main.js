@@ -12,13 +12,15 @@ import moment from 'moment'
 import {
   faQuoteLeft,
   faTimes,
-  faPencilAlt
+  faPencilAlt,
+  faPoundSign
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   faQuoteLeft,
   faTimes,
-  faPencilAlt
+  faPencilAlt,
+  faPoundSign
 )
 
 Vue.prototype.moment = moment
