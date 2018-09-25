@@ -35,7 +35,7 @@
 <script>
 export default {
   name: 'app',
-  data () {
+  data: function () {
     return {
       activeUser: null,
       loadingUser: false
